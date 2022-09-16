@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  # nginx:
+  #   container_name: nginx
+  #   build: requirements/nginx
+
+
+  #   restart: always    
+
+  mariadb:
+    container_name: mariadb
+    build: requirements/mariadb
+    environment:
+      DB_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      DB_PASSWORD: $MYSQL_PASSWORD
+      DB_USER: $MYSQL_USER
+      DB_NAME: $MYSQL_DATABASE_NAME
+    volumes:
+      - /home/${USER}/data/db:/var/lib/mysql
+    restart: always
+
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+
+
+  # Use root/example as user/password credentials
+
