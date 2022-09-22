@@ -7,4 +7,6 @@ COPY tools /tools
 
 RUN service mysql start && mysql < tools/schema.sql
 
+EXPOSE 3306
+
 CMD /usr/bin/mysqld_safe
