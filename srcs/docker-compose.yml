@@ -9,3 +9,12 @@ services:
     restart: always
     volumes:
       - /home/${USER}/data/db:/var/db
+  
+  
+
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    ports:
+      - 443:443
+    restart: always
