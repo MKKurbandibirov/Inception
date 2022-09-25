@@ -9,12 +9,35 @@ services:
     restart: always
     volumes:
       - /home/${USER}/data/db:/var/db
+    networks:
+      - inception
   
-  
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    env_file:
+      - .env
+    volumes:
+      - /home/${USER}/data/wp:/var/www/html/wordpress
+    depends_on:
+      - mariadb
+    restart: always
+    networks:
+      - inception
 
   nginx:
     container_name: nginx
     build: ./requirements/nginx
+    volumes:
+      - /home/${USER}/data/wp:/var/www/html/wordpress
     ports:
       - 443:443
     restart: always
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+
+networks:
+  inception:
+    driver: bridge

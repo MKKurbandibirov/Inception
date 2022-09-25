@@ -8,6 +8,4 @@ RUN apt-get install -y openssl && openssl req -x509 -nodes -days 365 -newkey rsa
 
 COPY ./conf/default /etc/nginx/sites-enabled/
 
-RUN service nginx start
-
-CMD bash
+CMD ["nginx", "-g", "daemon off;"]
