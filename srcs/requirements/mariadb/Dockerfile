@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y mariadb-server
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY tools /tools
 
-RUN service mysql start && mysql < tools/schema.sql
+RUN systemctl start mysqld.service && mysql < tools/schema.sql
 
 EXPOSE 3306
 
