@@ -56,6 +56,15 @@ services:
     restart: always
     networks:
       - inception
+
+  prometheus:
+    container_name: prometheus
+    build: ./requirements/bonus/prometheus
+    ports:
+      - 9090:9090
+    restart: always
+    networks:
+      - inception
   
 networks:
   inception:
