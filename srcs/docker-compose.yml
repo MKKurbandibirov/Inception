@@ -1,4 +1,4 @@
-version: '3'
+version: '3.6'
 
 services:
   mariadb:
@@ -38,21 +38,37 @@ services:
       - wordpress
     networks:
       - inception
+  
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    ports:
+      - 6379:6379
+    restart: always
+    networks:
+      - inception
 
+  site:
+    container_name: site
+    build: ./requirements/bonus/mysite
+    ports:
+      - 8080:8080
+    restart: always
+    networks:
+      - inception
+  
 networks:
   inception:
     driver: bridge
 
 volumes:
   db:
-    name: db
     driver: local
     driver_opts:
       type: none
       o: bind
       device: /home/${USER}/data/db
   wp:
-    name: wp
     driver: local
     driver_opts:
       type: none

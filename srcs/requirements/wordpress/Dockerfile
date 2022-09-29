@@ -8,6 +8,4 @@ EXPOSE 9000
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d/
 COPY ./tools /var/www/
 
-RUN rm -f /var/www/wordpress/wp-config-sample.php
-
 CMD bash /var/www/start.sh

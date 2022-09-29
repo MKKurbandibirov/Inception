@@ -22,6 +22,12 @@ wp core install --url=${DOMAIN_NAME} --title=${WORDPRESS_TITLE} --admin_user=${W
 
 wp user create ${MYSQL_USER} ${WORDPRESS_USER_EMAIL} --allow-root --role=subscriber --user_pass=${MYSQL_PASSWORD}
 
+wp plugin install redis-cache --activate --allow-root
+wp plugin update --all --allow-root
+
+wp config set WP_REDIS_HOST "redis"
+wp config set WP_REDIS_PORT "6379"
+
 fi
 
 /usr/sbin/php-fpm7.3 --nodaemonize
